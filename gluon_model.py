@@ -372,7 +372,7 @@ def heatmap():
 
 
 def merge_rlt():
-    root = '/workspace/nas/guangpu/'
+    root = '/workspace/nas/'
     test_path = root + 'test/images_b/'
     image_names = sorted([nm for nm in os.listdir(test_path) if 'jpg' in nm or 'JPG' in nm])
 
@@ -420,15 +420,15 @@ if __name__ == '__main__':
     # heatmap()
 
     weights = glob.glob1('/workspace/nas/guangpu/densenet121_im256_bs32/', '*epoch*params')
-    prefixes = [wt[-22:-7] for wt in weights if float(wt[-13:-7]) >= 0.9950]
-    print(len(prefixes))
-    # print(prefixes)
-    while prefixes:
+    suffixes = [wt[-22:-7] for wt in weights if float(wt[-13:-7]) >= 0.9950]
+    print(len(suffixes))
+    # print(suffixes)
+    while suffixes:
         pools = multiprocessing.Pool(6)
         for i in range(6):
-            if not prefixes:
+            if not suffixes:
                 break
-            pools.apply_async(infer, args=(prefixes.pop(0), False, i % 2))
+            pools.apply_async(infer, args=(suffixes.pop(0), False, i % 2))
         pools.close()
         pools.join()
 

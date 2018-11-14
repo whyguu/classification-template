@@ -406,15 +406,5 @@ if __name__ == '__main__':
     # infer(gpu_id=1, )
     # rlt_analysis()
 
-    # sp = '/workspace/probs_torch_256_dpn_xception/'
-    # weights = glob.glob1('/workspace/nas/guangpu/torch_256_dpn_xception/', '*epoch*pt')
-    # prefixes = [wt[6:-3] for wt in weights if float(wt[-9:-3]) >= 0.9850]
-    # while prefixes:
-    #     pools = multiprocessing.Pool(3)
-    #     for _ in range(3):
-    #         if not prefixes:
-    #             break
-    #         pools.apply_async(infer, args=(prefixes.pop(0), False, 0, sp))
-    #     pools.close()
-    #     pools.join()
+
 
